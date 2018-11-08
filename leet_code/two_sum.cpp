@@ -22,6 +22,7 @@ public:
 int main(){
     Solution s;
     vector<int> v{1,2,3,4,5,6,7,8,9,10};
-    s.twoSum(v, 13);
+    vector<int> twoSum = s.twoSum(v, 13);
+    cout << twoSum[0] << " " << twoSum[1] << endl;
     return 0;
 }
