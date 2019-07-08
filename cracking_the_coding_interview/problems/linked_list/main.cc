@@ -3,11 +3,11 @@
 #ifndef NODE
 #define NODE
 
+// includes definition of node and prototypes functions
+// for each problem
 #include "node.h"
 
 #endif
-
-#include "remove_dups.h"
 // this program executes all of the problem solutions implemented for
 // the linked list chapter of cracking the coding interview, these consist
 // of:
@@ -21,30 +21,8 @@
 
 // 2.3 Delete Middle Node, deletes the middle node of a linked list
 
-Node * generate_sequence(){
-  Node * head = new Node;
-  int i;
-  head->data = 10;
-  for(i = 9; i > 0; i--){
-    Node * new_node = new Node;
-    new_node->data = i % 2 == 0 ? 1 : i;
-    new_node->next = head;
-    head = new_node;
-  }
-  return head;
-}
-
-void printlist(Node * head){
-  Node * curr = head;
-  std:: cout << '[';
-  while(curr){
-    std::cout << curr->data << (curr->next ? ", " : "");
-    curr = curr->next;
-  }
-  std:: cout << ']' << std::endl;
-}
-
 int main(){
+  // GENERATE LINKED LIST WITH DUPLICATES
   Node * head = generate_sequence();
   std::cout << "list before remove_dups_buffer" << std::endl;
   printlist(head);
@@ -59,7 +37,36 @@ int main(){
   std::cout << "list after remove_dups_no_buffer" << std::endl;
   printlist(head);
 
+  head = generate_sequence();
+  Node * k = return_Kth_to_Last(head, 3);
+  printlist(head);
+  std::cout << "kth to last element of list (k = 3) is: " << (k ? k->data : 0) << std::endl;
+
+  // GENERATE LINKED LIST WITH DUPLICATES
   LinkedList ll;
   ll.generate();
+  std::cout << "list before remove_dups (LinkedList class)" << std::endl;
   ll.printList();
+  ll.remove_dups();
+  std::cout << "list after remove_dups (LinkedList class)" << std::endl;
+  ll.printList();
+
+  ll.generate();
+  std::cout << "current list" << std::endl;
+  ll.printList();
+  std::cout << "kth element (k = 3)" << std::endl;
+  k = ll.Kth_to_last(3);
+  std::cout << k->data << std::endl;
+
+  head = generate_sequence();
+  printlist(head);
+  delete_middle(head);
+  std::cout << "list after removing middle" << std::endl;
+  printlist(head);
+
+  head = generate_sequence_odd_length();
+  printlist(head);
+  delete_middle(head);
+  std::cout << "list after removing middle" << std::endl;
+  printlist(head);
 }
