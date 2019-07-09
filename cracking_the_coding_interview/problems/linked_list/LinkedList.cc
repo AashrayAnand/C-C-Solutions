@@ -3,7 +3,19 @@
 #include <unordered_map>
 
 LinkedList::LinkedList(){
-    head = nullptr;
+  head = nullptr;
+}
+
+LinkedList::~LinkedList(){
+  if(head){
+    Node * curr = head->next;
+    while(curr){
+      head->next = head->next->next;
+      delete(curr);
+      curr = head->next;
+    }
+    delete(head);
+  }
 }
 
 void LinkedList::Insert(int data){
@@ -30,6 +42,7 @@ void LinkedList::printList(){
 }
 
 void LinkedList::generate(){
+  clear(head);
   head = nullptr;
   int i;
   for(i = 0; i < 10; i++){
@@ -42,7 +55,9 @@ void LinkedList::remove_dups(){
   Node * curr = head;
   while(curr){
     if(values.count(curr->next->data)){
+      Node * removed = curr->next;
       curr->next = curr->next->next;
+      delete(removed);
     } else {
       values[curr->next->data] = 1;
     }
