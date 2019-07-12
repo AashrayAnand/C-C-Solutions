@@ -20,6 +20,7 @@ struct dll_Node {
 Node * generate_sequence();
 Node * generate_sequence_odd_length();
 void printlist(Node *);
+void printcycle(Node *);
 void clear(Node *);
 Node * generate_palindrome();
 

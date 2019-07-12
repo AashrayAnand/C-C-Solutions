@@ -150,4 +150,18 @@ int main(){
   //
 
   // FIND START OF CYCLE TESTS
+  head = generate_sequence();
+  Node * curr = head;
+  Node * tail = head;
+  int i;
+  for(i = 0; i < 4; i++){
+    curr = curr->next;
+  }
+  while(tail->next){
+    tail = tail->next;
+  }
+  tail->next = curr;
+  printcycle(head);
+  std::cout << "front of cycle " << detectLoop(head)->data << std::endl;
+  //clear(head);
 }

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "node.h"
 
 // utility functions, used to generate linked lists and print them
@@ -60,6 +59,17 @@ void printlist(Node * head){
     curr = curr->next;
   }
   std:: cout << ']' << std::endl;
+}
+
+void printcycle(Node * head){
+  std::unordered_map<Node *, int> values;
+  Node * curr = head;
+  while(curr && values.count(curr) != 1){
+    values[curr] = 1;
+    std::cout << curr->data << std::endl;
+    curr = curr->next;
+  }
+  std::cout << "front of loop is " << curr->data << std::endl;
 }
 
 void clear(Node * head){
